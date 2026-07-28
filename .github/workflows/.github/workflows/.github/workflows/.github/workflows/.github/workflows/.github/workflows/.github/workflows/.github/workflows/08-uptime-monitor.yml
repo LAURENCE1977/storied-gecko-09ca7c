@@ -1,0 +1,15 @@
+name: 08 - Uptime Monitor Agent
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: curl -fsS https://theworldofmusicaccordingtolaurencecolborne.co.uk || echo "down"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/uptime-check.js || echo "check done"
