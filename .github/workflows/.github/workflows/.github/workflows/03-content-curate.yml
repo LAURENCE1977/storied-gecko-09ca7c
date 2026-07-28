@@ -1,0 +1,19 @@
+name: 03 - Content Curate Agent
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+jobs:
+  curate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/curate-content.js
+      - run: |
+          git config user.name "LC Bot"
+          git config user.email "bot@laurencecolborne.co.uk"
+          git add site-data.json
+          git diff --staged --quiet || (git commit -m "chore: curate content [bot]" && git push)l
