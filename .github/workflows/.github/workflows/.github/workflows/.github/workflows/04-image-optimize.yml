@@ -1,0 +1,19 @@
+name: 04 - Image Optimize Agent
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+jobs:
+  images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/optimize-images.js
+      - run: |
+          git config user.name "LC Bot"
+          git config user.email "bot@laurencecolborne.co.uk"
+          git add public/
+          git diff --staged --quiet || (git commit -m "chore: optimize images [bot]" && git push)
