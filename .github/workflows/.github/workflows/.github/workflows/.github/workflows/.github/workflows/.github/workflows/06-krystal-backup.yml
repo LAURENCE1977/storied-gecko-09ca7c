@@ -1,0 +1,20 @@
+name: 06 - Krystal Backup Agent
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: FTP to Krystal
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.KRYSTAL_FTP_HOST }}
+          username: ${{ secrets.KRYSTAL_FTP_USER }}
+          password: ${{ secrets.KRYSTAL_FTP_PASS }}
+          server-dir: /public_html/
+          local-dir:./dist/
