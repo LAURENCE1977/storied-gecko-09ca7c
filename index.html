@@ -131,13 +131,25 @@ h2{font-family:Georgia,serif;font-size:30px;margin:50px 0 14px}
   <div style="background:#121216;border:1px solid rgba(212,175,55,0.12);border-radius:18px;overflow:hidden;padding:0"><iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/5Na2bQAj5SQ2wJsLWLSuhu?utm_source=generator" width="100%" height="380" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
 
   <h2 id="videos">Music Videos — YouTube Studio Linked</h2>
-  <div class="note">Replace UC4LEir3ub_U9Z7zs50i19jA with your channel ID (starts with UC...). Your latest uploads will auto-show here. For each release you can also link a specific video.</div>
-  <div style="background:#121216;border:1px solid rgba(212,175,55,0.12);border-radius:18px;overflow:hidden;padding:40px 20px;text-align:center">
-  <div style="font-size:42px;margin-bottom:12px">▶️</div>
-  <div style="font-weight:700;margin-bottom:8px">YouTube Auto-Feed Ready</div>
-  <div style="color:#999;font-size:13px;max-width:500px;margin:0 auto">Add your YouTube Channel ID to this file (find it in YouTube Studio > Settings > Advanced — starts with UC...). Once added, your latest music videos will auto-appear here. For now your individual release SmartLinks above all work perfectly.</div>
-  <div style="margin-top:16px"><a href="https://www.youtube.com/channel/UC4LEir3ub_U9Z7zs50i19jAtarget="_blank" style="display:inline-block;border:1px solid rgba(212,175,55,0.4);padding:10px 18px;border-radius:999px;font-size:12px;color:#D4AF37;text-decoration:none">How to find Channel ID</a></div>
+  <<div style="border:1px solid rgba(212,175,55,0.3);border-radius:18px;padding:20px;text-align:center">
+<h2 style="color:#D4AF37">Latest Videos</h2>
+<div id="yt-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:16px">Loading...</div>
 </div>
+
+<script>
+const CHANNEL="UC4LEir3ub_U9Z7zs50i19jA";
+fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id="+CHANNEL)
+.then(r=>r.json())
+.then(d=>{
+const g=document.getElementById("yt-grid");
+g.innerHTML="";
+d.items.slice(0,6).forEach(v=>{
+const id=v.link.split("v=")[1];
+g.innerHTML+=`<div style="background:#111;border-radius:12px;overflow:hidden"><iframe width="100%" height="150" src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe><div style="padding:8px;color:#fff">${v.title}</div></div>`;
+});
+});
+</script>
+
 
   
   
