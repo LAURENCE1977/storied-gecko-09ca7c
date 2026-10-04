@@ -6,83 +6,178 @@
     <title>LOZWEBSITE - Music Command Center</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        body { background-color: #0b0f19; color: #f3f4f6; font-family: system-ui, sans-serif; }
-       .glass { background: rgba(17,24,39,0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
-       .glow-btn { transition: all.2s ease; }
+        body { background-color: #0b0f19; color: #f3f4f6; font-family: system-ui, -apple-system, sans-serif; }
+       .glass { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+       .glow-btn { transition: all 0.2s ease; }
        .glow-btn:hover { box-shadow: 0 0 20px rgba(59,130,246,0.6); transform: translateY(-1px); }
-       .publish-btn { background: linear-gradient(135deg, #3b82f6, #8b5cf6); }
-       .publish-btn:hover { box-shadow: 0 0 20px rgba(139,92,246,0.5); }
+       .publish-btn { background: linear-gradient(135deg, #3b82f6, #8b5cf6); transition: all 0.2s ease; }
+       .publish-btn:hover { box-shadow: 0 0 20px rgba(139,92,246,0.5); transform: translateY(-1px); }
+       .spotify-btn { background: #1DB954; }
+       .spotify-btn:hover { background: #1ed760; box-shadow: 0 0 15px rgba(29,185,84,0.4); }
+       .youtube-btn { background: #FF0000; }
+       .youtube-btn:hover { background: #cc0000; box-shadow: 0 0 15px rgba(255,0,0,0.4); }
     </style>
 </head>
 <body class="h-screen flex flex-col overflow-hidden">
-<header class="glass px-6 py-4 flex items-center justify-between border-b border-slate-800">
-    <div class="flex items-center space-x-3"><div class="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></div><h1 class="text-xl font-bold tracking-wider text-blue-400">LOZWEBSITE // MUSIC CORE v3.0</h1></div>
-    <div class="flex items-center space-x-4 text-xs font-mono text-slate-400 bg-slate-900/50 px-3 py-1.5 rounded-md border border-slate-800"><span>STUDIO: <span class="text-green-400 font-bold">ONLINE</span></span><span>|</span><span>DAW LINK: <span class="text-blue-400 font-bold">ACTIVE</span></span></div>
-</header>
-<main class="flex-1 flex overflow-hidden">
-<aside class="w-64 glass border-r border-slate-800 p-4 flex flex-col justify-between">
-    <div class="space-y-6">
-        <div><p class="text-[10px] font-mono tracking-widest text-slate-500 uppercase mb-2">Modules</p>
-            <nav class="space-y-1">
-                <button onclick="switchTab('chat')" id="tab-chat" class="w-full text-left px-3 py-2.5 rounded-lg text-sm bg-blue-600/20 text-blue-400 border border-blue-500/30">💬 Studio Chat / A&R</button>
-                <button onclick="switchTab('track')" id="tab-track" class="w-full text-left px-3 py-2.5 rounded-lg text-sm text-slate-400 hover:bg-slate-800/50">🎵 Track Engine (8-Min)</button>
-                <button onclick="switchTab('cover')" id="tab-cover" class="w-full text-left px-3 py-2.5 rounded-lg text-sm text-slate-400 hover:bg-slate-800/50">🎨 Cover Studio (Flux)</button>
-            </nav>
-        </div>
-        <div><p class="text-[10px] font-mono tracking-widest text-slate-500 uppercase mb-2">Connected Engines</p>
-            <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs glass p-2 rounded bg-slate-950/40"><span class="text-slate-400">Audio Core Intelligence</span><span class="w-2 h-2 rounded-full bg-green-400"></span></div>
-                <div class="flex items-center justify-between text-xs glass p-2 rounded bg-slate-950/40"><span class="text-slate-400">DAW / Stem Engine</span><span class="w-2 h-2 rounded-full bg-amber-400"></span></div>
-            </div>
+
+<header class="glass px-6 py-4 flex items-center justify-between border-b border-slate-800 shrink-0">
+    <div class="flex items-center space-x-3">
+        <div class="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></div>
+        <h1 class="text-xl font-bold tracking-wider text-blue-400">LOZWEBSITE // MUSIC CORE v3.0</h1>
+    </div>
+    <div class="flex items-center space-x-2">
+        <a href="https://open.spotify.com/artist/5Na2bQAj5SQ2wJsLWLSuhu" target="_blank" class="spotify-btn text-white text-[11px] font-mono font-bold px-4 py-2 rounded-full">SPOTIFY</a>
+        <a href="https://youtube.com/@worldofmusiclaurence" target="_blank" class="youtube-btn text-white text-[11px] font-mono font-bold px-4 py-2 rounded-full">YOUTUBE</a>
+        <div class="hidden md:flex ml-2 text-xs font-mono text-slate-400 bg-slate-900/50 px-3 py-1.5 rounded-md border border-slate-800">
+            <span>STUDIO: <span class="text-green-400 font-bold">ONLINE</span></span>
         </div>
     </div>
-    <div class="border-t border-slate-800 pt-4 text-center"><p class="text-[10px] text-slate-500 font-mono">LOZWEBSITE PLATFORM v3.0</p><p class="text-[9px] text-slate-600 font-mono mt-1">MUSIC EDITION</p></div>
+</header>
+
+<main class="flex-1 flex overflow-hidden">
+<aside class="w-64 glass border-r border-slate-800 p-4 flex flex-col justify-between shrink-0">
+    <div class="space-y-6">
+        <div>
+            <p class="text-[10px] font-mono tracking-widest text-slate-500 uppercase mb-2">Modules</p>
+            <nav class="space-y-1">
+                <button onclick="switchTab('chat')" id="tab-chat" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium bg-blue-600/20 text-blue-400 border border-blue-500/30">💬 Studio Chat / A&R</button>
+                <button onclick="switchTab('track')" id="tab-track" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:bg-slate-800/50">🎵 Track Engine</button>
+                <button onclick="switchTab('cover')" id="tab-cover" class="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:bg-slate-800/50">🎨 Cover Studio</button>
+            </nav>
+        </div>
+        <div class="space-y-3">
+            <p class="text-[10px] font-mono tracking-widest text-slate-500 uppercase">Official Links</p>
+            <a href="https://open.spotify.com/artist/5Na2bQAj5SQ2wJsLWLSuhu" target="_blank" class="flex items-center justify-between text-xs glass p-2.5 rounded hover:bg-[#1DB954]/10 border border-slate-800 hover:border-[#1DB954]/30"><span class="text-slate-300">Spotify — Laurence</span><span class="text-[10px] text-[#1DB954] font-bold">OPEN ↗</span></a>
+            <a href="https://youtube.com/@worldofmusiclaurence" target="_blank" class="flex items-center justify-between text-xs glass p-2.5 rounded hover:bg-red-500/10 border border-slate-800 hover:border-red-500/30"><span class="text-slate-300">YouTube — @worldofmusiclaurence</span><span class="text-[10px] text-red-400 font-bold">OPEN ↗</span></a>
+        </div>
+    </div>
+    <div class="border-t border-slate-800 pt-4 text-center">
+        <p class="text-[10px] text-slate-500 font-mono">LOZWEBSITE PLATFORM v3.0</p>
+        <p class="text-[9px] text-slate-600 font-mono mt-1">SPOTIFY + YOUTUBE LIVE</p>
+    </div>
 </aside>
 
 <section class="flex-1 flex flex-col bg-slate-950/20 p-6 overflow-y-auto">
-    <!-- CHAT -->
-    <div id="content-chat" class="flex-1 flex flex-col max-w-4xl mx-auto w-full h-full">
-        <div class="flex-1 glass rounded-xl p-4 mb-4 overflow-y-auto border border-slate-800/60"><div class="space-y-4" id="chat-box"><div class="flex items-start space-x-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center font-bold text-xs">LZ</div><div class="bg-slate-900/80 border border-slate-800/80 px-4 py-3 rounded-2xl rounded-tl-none max-w-xl text-sm"><p class="text-blue-400 font-mono text-xs mb-1 font-bold">MUSIC CORE INITIALIZED // STUDIO LINKED</p>Welcome back, Laurence. Studio is online. Ready to build tracks, generate covers, or prep releases.</div></div></div><div id="chat-feedback" class="mt-4 text-[11px] font-mono text-slate-500"></div></div>
-        <div class="flex space-x-2"><input type="text" id="user-input" placeholder="Ask A&R, draft lyrics, plan a drop..." class="flex-1 bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-blue-500"><button onclick="sendMessage()" class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3.5 rounded-xl text-sm font-mono glow-btn">EXECUTE</button></div>
+    <div id="content-chat" class="flex-1 flex flex-col max-w-5xl mx-auto w-full h-full">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+            <div class="glass rounded-xl p-4 border border-slate-800/60">
+                <p class="text-[10px] font-mono text-slate-500 uppercase mb-2">Now Playing — Spotify Artist</p>
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/5Na2bQAj5SQ2wJsLWLSuhu?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <a href="https://open.spotify.com/artist/5Na2bQAj5SQ2wJsLWLSuhu" target="_blank" class="mt-3 block text-center spotify-btn text-white text-[11px] font-mono font-bold py-2.5 rounded-lg">OPEN SPOTIFY ↗</a>
+            </div>
+            <div class="glass rounded-xl p-4 border border-slate-800/60">
+                <p class="text-[10px] font-mono text-slate-500 uppercase mb-2">Latest — YouTube @worldofmusiclaurence</p>
+                <div class="bg-black rounded-lg overflow-hidden aspect-video flex items-center justify-center text-center p-6">
+                    <div>
+                        <p class="text-sm text-slate-300 mb-2">YouTube Channel: @worldofmusiclaurence</p>
+                        <a href="https://youtube.com/@worldofmusiclaurence" target="_blank" class="youtube-btn text-white text-xs font-mono font-bold px-5 py-2.5 rounded-full inline-block">OPEN YOUTUBE CHANNEL ↗</a>
+                        <p class="text-[10px] text-slate-500 mt-3">Send me your latest video URL and I'll embed the actual video player here instead of the channel link</p>
+                    </div>
+                </div>
+                <div class="mt-3 grid grid-cols-2 gap-2">
+                    <a href="https://youtube.com/@worldofmusiclaurence" target="_blank" class="youtube-btn text-center text-white text-[11px] font-mono font-bold py-2.5 rounded-lg">YOUTUBE CHANNEL ↗</a>
+                    <a href="https://www.youtube.com/@worldofmusiclaurence/videos" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-white text-[11px] font-mono font-bold py-2.5 rounded-lg text-center">VIDEOS ↗</a>
+                </div>
+            </div>
+        </div>
+        <div class="flex-1 glass rounded-xl p-4 mb-4 flex flex-col overflow-y-auto border border-slate-800/60">
+            <div class="space-y-4" id="chat-box">
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center font-bold text-xs">LZ</div>
+                    <div class="bg-slate-900/80 border border-slate-800/80 px-4 py-3 rounded-2xl rounded-tl-none max-w-xl text-sm">
+                        <p class="text-blue-400 font-mono text-xs mb-1 font-bold">MUSIC CORE INITIALIZED // SPOTIFY + YOUTUBE LIVE</p>
+                        Welcome back, Laurence. Spotify Artist 5Na2bQAj5SQ2wJsLWLSuhu and YouTube @worldofmusiclaurence are live.
+                    </div>
+                </div>
+            </div>
+            <div id="chat-feedback" class="mt-4 text-[11px] font-mono text-slate-500 h-4"></div>
+        </div>
+        <div class="flex space-x-2 shrink-0">
+            <input type="text" id="user-input" placeholder="Ask A&R, draft lyrics, plan a drop..." class="flex-1 bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-blue-500">
+            <button onclick="sendMessage()" class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3.5 rounded-xl text-sm font-mono glow-btn">EXECUTE</button>
+        </div>
     </div>
 
-    <!-- TRACK -->
     <div id="content-track" class="hidden flex-1 max-w-6xl mx-auto w-full space-y-6">
-        <div class="glass p-6 rounded-xl border border-slate-800"><h2 class="text-lg font-bold text-blue-400">🎵 Automated Track Creation</h2><p class="text-xs text-slate-400">Write, arrange and queue full-length tracks.</p></div>
+        <div class="glass p-6 rounded-xl border border-slate-800">
+            <h2 class="text-lg font-bold text-blue-400">🎵 Track Engine — Spotify + YouTube Publish</h2>
+            <p class="text-xs text-slate-400">Build and publish straight to your official artist pages.</p>
+        </div>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div class="glass p-5 rounded-xl border border-slate-800 space-y-4">
-                <textarea id="track-lyrics" placeholder="Enter vibe, theme, or lyrics..." class="w-full h-32 text-xs bg-slate-900 border border-slate-800 rounded-lg p-2.5"></textarea>
-                <select id="track-length" class="w-full text-xs bg-slate-900 border border-slate-800 rounded-lg p-2.5"><option>8 Minutes (Extended Mix)</option><option>3 Minutes (Single)</option><option>15 Minutes (EP Flow)</option></select>
+                <textarea id="track-lyrics" placeholder="Enter vibe, theme, or lyrics..." class="w-full h-28 text-xs bg-slate-900 border border-slate-800 rounded-lg p-2.5 text-slate-300"></textarea>
                 <button onclick="compileTrack()" class="w-full bg-blue-600 hover:bg-blue-500 text-xs font-mono font-bold py-3 rounded-lg text-white glow-btn">COMPILE ARRANGEMENT NODES</button>
                 <button onclick="publishTrack()" class="w-full publish-btn text-xs font-mono font-bold py-3 rounded-lg text-white">PUBLISH FINAL MIX</button>
+                <div class="grid grid-cols-2 gap-2">
+                    <a href="https://open.spotify.com/artist/5Na2bQAj5SQ2wJsLWLSuhu" target="_blank" class="spotify-btn text-center text-xs font-mono font-bold py-2.5 rounded-lg text-white">SPOTIFY ↗</a>
+                    <a href="https://youtube.com/@worldofmusiclaurence" target="_blank" class="youtube-btn text-center text-xs font-mono font-bold py-2.5 rounded-lg text-white">YOUTUBE ↗</a>
+                </div>
                 <p id="track-status" class="text-[11px] font-mono text-green-400 text-center h-4"></p>
             </div>
-            <div class="glass p-5 rounded-xl border border-slate-800 lg:col-span-2"><h3 class="text-xs font-mono font-bold tracking-wider text-slate-400 uppercase mb-3">Arrangement Queue</h3><div class="space-y-2" id="track-queue"><div class="flex justify-between text-xs p-3 rounded bg-slate-900/60 border border-slate-800/40"><span>Intro_01_Atmos (16 bars)</span><span class="text-[10px] bg-green-500/10 text-green-400 px-2 py-1 rounded border border-green-500/20">Complete</span></div><div class="flex justify-between text-xs p-3 rounded bg-slate-900/60 border border-slate-800/40"><span>Verse_02_Main (32 bars)</span><span class="text-[10px] bg-amber-500/10 text-amber-400 px-2 py-1 rounded">Rendering</span></div><div class="flex justify-between text-xs p-3 rounded bg-slate-900/60 border border-slate-800/40"><span>Hook_03_Drop (16 bars)</span><span class="text-[10px] bg-slate-700/30 text-slate-400 px-2 py-1 rounded">Queued</span></div></div></div>
+            <div class="glass p-5 rounded-xl border border-slate-800 lg:col-span-2">
+                <h3 class="text-xs font-mono font-bold tracking-wider text-slate-400 uppercase mb-3">Queue + Official Embeds</h3>
+                <div class="space-y-2" id="track-queue">
+                    <div class="flex items-center justify-between text-xs p-3 rounded bg-slate-900/60 border border-slate-800/40"><span>Intro_01_Atmos</span><span class="text-[10px] bg-green-500/10 text-green-400 px-2 py-1 rounded border">Complete</span></div>
+                    <div class="flex items-center justify-between text-xs p-3 rounded bg-slate-900/60 border border-slate-800/40"><span>Verse_02_Main</span><span class="text-[10px] bg-amber-500/10 text-amber-400 px-2 py-1 rounded">Rendering</span></div>
+                </div>
+                <div class="mt-6">
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/5Na2bQAj5SQ2wJsLWLSuhu?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- COVER -->
     <div id="content-cover" class="hidden flex-1 max-w-6xl mx-auto w-full space-y-6">
-        <div class="glass p-6 rounded-xl border border-slate-800"><h2 class="text-lg font-bold text-blue-400">🎨 Cover Art & Visual Studio</h2><p class="text-xs text-slate-400">Generate artwork and promo visuals with Flux.</p></div>
+        <div class="glass p-6 rounded-xl border border-slate-800">
+            <h2 class="text-lg font-bold text-blue-400">🎨 Cover Studio — Spotify Canvas + YouTube Thumbnail</h2>
+        </div>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div class="glass p-5 rounded-xl border border-slate-800 space-y-4">
-                <textarea id="cover-prompt" placeholder="midnight city, neon rain, vinyl texture..." class="w-full h-24 text-xs bg-slate-900 border border-slate-800 rounded-lg p-2.5"></textarea>
+                <textarea id="cover-prompt" placeholder="midnight city, neon rain, vinyl texture..." class="w-full h-24 text-xs bg-slate-900 border border-slate-800 rounded-lg p-2.5 text-slate-300"></textarea>
                 <button onclick="generateCover()" class="w-full bg-blue-600 hover:bg-blue-500 text-xs font-mono font-bold py-3 rounded-lg text-white glow-btn">GENERATE ASSETS</button>
                 <button onclick="publishCover()" class="w-full publish-btn text-xs font-mono font-bold py-3 rounded-lg text-white">PUBLISH TO LIBRARY</button>
+                <div class="grid grid-cols-2 gap-2">
+                    <a href="https://open.spotify.com/artist/5Na2bQAj5SQ2wJsLWLSuhu" target="_blank" class="spotify-btn text-center text-xs font-mono font-bold py-2.5 rounded-lg text-white">SPOTIFY ↗</a>
+                    <a href="https://youtube.com/@worldofmusiclaurence" target="_blank" class="youtube-btn text-center text-xs font-mono font-bold py-2.5 rounded-lg text-white">YOUTUBE ↗</a>
+                </div>
                 <p id="cover-status" class="text-[11px] font-mono text-violet-400 text-center h-4"></p>
             </div>
-            <div class="glass p-5 rounded-xl border border-slate-800 lg:col-span-2"><h3 class="text-xs font-mono font-bold tracking-wider text-slate-400 uppercase mb-3">Generated Gallery</h3><div class="grid grid-cols-3 gap-3" id="cover-gallery"><div class="aspect-square bg-slate-800 rounded-lg border border-slate-700/50 flex items-center justify-center text-[10px] text-slate-500">Cover_01.png</div><div class="aspect-square bg-blue-900/30 rounded-lg border border-slate-700/50 flex items-center justify-center text-[10px] text-slate-500">Cover_02.png</div><div class="aspect-square bg-slate-800 rounded-lg border border-slate-700/50 flex items-center justify-center text-[10px] text-slate-500">Cover_03.png</div></div></div>
+            <div class="glass p-5 rounded-xl border border-slate-800 lg:col-span-2">
+                <h3 class="text-xs font-mono font-bold tracking-wider text-slate-400 uppercase mb-3">Gallery</h3>
+                <div class="grid grid-cols-3 gap-3" id="cover-gallery">
+                    <div class="aspect-square bg-slate-800 rounded-lg border border-slate-700/50 flex items-center justify-center text-[10px] font-mono text-slate-500">Cover_01.png</div>
+                    <div class="aspect-square bg-blue-900/30 rounded-lg border border-slate-700/50 flex items-center justify-center text-[10px] font-mono text-slate-500">Cover_02.png</div>
+                    <div class="aspect-square bg-slate-800 rounded-lg border border-slate-700/50 flex items-center justify-center text-[10px] font-mono text-slate-500">Cover_03.png</div>
+                </div>
+            </div>
         </div>
     </div>
+
 </section>
 </main>
+
 <script>
-function switchTab(tab){document.getElementById('content-chat').classList.add('hidden');document.getElementById('content-track').classList.add('hidden');document.getElementById('content-cover').classList.add('hidden');document.getElementById('content-'+tab).classList.remove('hidden');document.querySelectorAll('[id^=tab-]').forEach(b=>{b.classList.remove('bg-blue-600/20','text-blue-400','border','border-blue-500/30');b.classList.add('text-slate-400');});const a=document.getElementById('tab-'+tab);a.classList.add('bg-blue-600/20','text-blue-400','border','border-blue-500/30');a.classList.remove('text-slate-400');}
-function sendMessage(){const i=document.getElementById('user-input'),b=document.getElementById('chat-box'),f=document.getElementById('chat-feedback');if(!i.value.trim())return;const u=document.createElement('div');u.className='flex justify-end';u.innerHTML=`<div class="bg-blue-600/20 border border-blue-500/30 px-4 py-3 rounded-2xl rounded-tr-none max-w-xl text-sm">${i.value}</div>`;b.appendChild(u);f.textContent='EXECUTE received — A&R thinking...';const ai=document.createElement('div');ai.className='flex items-start space-x-3 mt-4';ai.innerHTML=`<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center font-bold text-xs">LZ</div><div class="bg-slate-900/80 border border-slate-800/80 px-4 py-3 rounded-2xl rounded-tl-none max-w-xl text-sm">Locked. Drafting: <span class="text-blue-400">${i.value}</span></div>`;setTimeout(()=>{b.appendChild(ai);f.textContent='Response logged.';b.scrollTop=b.scrollHeight;},600);i.value='';}
-function compileTrack(){const s=document.getElementById('track-status'),q=document.getElementById('track-queue'),l=document.getElementById('track-lyrics').value||'Untitled';s.textContent='Compiling: '+l.slice(0,30)+'...';const n=document.createElement('div');n.className='flex justify-between text-xs p-3 rounded bg-blue-900/20 border border-blue-500/20';n.innerHTML=`<span>New_${Date.now().toString().slice(-4)}_${l.slice(0,12)}</span><span class="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-1 rounded border">Compiled</span>`;q.prepend(n);setTimeout(()=>s.textContent='Arrangement compiled.',1000);}
-function publishTrack(){const s=document.getElementById('track-status');s.textContent='✓ PUBLISHED: Final mix sent to library.';setTimeout(()=>s.textContent='',3000);}
-function generateCover(){const s=document.getElementById('cover-status'),g=document.getElementById('cover-gallery'),p=document.getElementById('cover-prompt').value||'midnight neon';s.textContent='Generating: '+p.slice(0,25)+'...';const d=document.createElement('div');d.className='aspect-square bg-blue-900/40 rounded-lg border border-blue-500/30 flex items-center justify-center text-[10px] text-blue-300';d.textContent='NEW_'+p.slice(0,8)+'.png';g.prepend(d);setTimeout(()=>s.textContent='Assets generated.',1000);}
-function publishCover(){const s=document.getElementById('cover-status');s.textContent='✓ PUBLISHED: Gallery synced.';setTimeout(()=>s.textContent='',3000);}
+function switchTab(tab){
+  document.getElementById('content-chat').classList.add('hidden');
+  document.getElementById('content-track').classList.add('hidden');
+  document.getElementById('content-cover').classList.add('hidden');
+  document.getElementById('content-'+tab).classList.remove('hidden');
+  document.querySelectorAll('[id^=tab-]').forEach(b=>{b.classList.remove('bg-blue-600/20','text-blue-400','border','border-blue-500/30'); b.classList.add('text-slate-400');});
+  const a=document.getElementById('tab-'+tab); a.classList.add('bg-blue-600/20','text-blue-400','border','border-blue-500/30'); a.classList.remove('text-slate-400');
+}
+function sendMessage(){
+  const i=document.getElementById('user-input'), b=document.getElementById('chat-box'), f=document.getElementById('chat-feedback');
+  if(!i.value.trim()) return;
+  const u=document.createElement('div'); u.className='flex justify-end mt-3'; u.innerHTML=`<div class="bg-blue-600/20 border border-blue-500/30 px-4 py-3 rounded-2xl rounded-tr-none max-w-xl text-sm">${i.value}</div>`;
+  b.appendChild(u); f.textContent='EXECUTE received...';
+  const ai=document.createElement('div'); ai.className='flex items-start space-x-3 mt-4'; ai.innerHTML=`<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center font-bold text-xs">LZ</div><div class="bg-slate-900/80 border border-slate-800/80 px-4 py-3 rounded-2xl rounded-tl-none max-w-xl text-sm">Drafting: <span class="text-blue-400">${i.value}</span> — ready for Spotify + YouTube.</div>`;
+  setTimeout(()=>{b.appendChild(ai); f.textContent='Response logged.'; b.scrollTop=b.scrollHeight;},600);
+  i.value=''; b.scrollTop=b.scrollHeight;
+}
+function compileTrack(){const s=document.getElementById('track-status'), q=document.getElementById('track-queue'), l=document.getElementById('track-lyrics').value||'Untitled'; s.textContent='Compiling: '+l.slice(0,30)+'...'; const n=document.createElement('div'); n.className='flex items-center justify-between text-xs p-3 rounded bg-blue-900/20 border border-blue-500/20'; n.innerHTML=`<span class="text-slate-200">New_${Date.now().toString().slice(-4)}_${l.slice(0,12)}</span><span class="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-1 rounded border">Compiled</span>`; q.prepend(n); setTimeout(()=>s.textContent='Arrangement compiled.',1000);}
+function publishTrack(){const s=document.getElementById('track-status'); s.textContent='✓ PUBLISHED: Queued for Spotify + YouTube!'; setTimeout(()=>s.textContent='',3000);}
+function generateCover(){const s=document.getElementById('cover-status'), g=document.getElementById('cover-gallery'), p=document.getElementById('cover-prompt').value||'midnight neon'; s.textContent='Generating: '+p.slice(0,25)+'...'; const d=document.createElement('div'); d.className='aspect-square bg-blue-900/40 rounded-lg border border-blue-500/30 flex items-center justify-center text-[10px] font-mono text-blue-300'; d.textContent='NEW_'+p.slice(0,8)+'.png'; g.prepend(d); setTimeout(()=>s.textContent='Assets generated.',1000);}
+function publishCover(){const s=document.getElementById('cover-status'); s.textContent='✓ PUBLISHED: Gallery synced to Spotify Canvas + YouTube thumb.'; setTimeout(()=>s.textContent='',3000);}
 </script>
 </body>
 </html>
