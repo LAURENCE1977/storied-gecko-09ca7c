@@ -1,29 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The World Of Music According To Laurence Colborne</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The World of Music According To Laurence Colborne</title>
 <style>
-  body { background:#f3f0e9; font-family:system-ui,-apple-system; margin:0; padding:20px; }
-  .glass { background: rgba(255,255,255,0.85); backdrop-filter: blur(10px); border-radius:24px; padding:32px; max-width:850px; margin:40px auto; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.08); }
-  .btn { display:inline-block; padding:14px 28px; border-radius:30px; text-decoration:none; font-weight:800; color:white; margin:10px; letter-spacing:0.5px; }
-  .spotify { background:#1DB954; }
-  .youtube { background:#FF0000; }
-  h1 { margin:0 0 8px 0; }
-</style>
-</head>
-<body>
-  <div class="glass">
-    <h1>MUSIC CORE v3.0</h1>
-    <p>The World Of Music According To Laurence Colborne</p>
-    
-    <a class="btn spotify" href="https://open.spotify.com/artist/5Na2bQAj5SQ2wJsLWLSuhu" target="_blank">SPOTIFY</a>
-    <a class="btn youtube" href="https://www.youtube.com/@worldofmusiclaurence" target="_blank">YOUTUBE</a>
-
-    <div style="margin-top:28px">
-      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/5Na2bQAj5SQ2wJsLWLSuhu?utm_source=generator" width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
-  </div>
-</body>
-</html>
+:root{--gold:#D4AF37;--gold2:#F2D87A;--bg:#070709}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:#eee;font-family:system-ui,Segoe UI,Roboto,sans-serif}
+.hero{text-align:center;padding:60px 20px 30px;background:radial-gradient(700px 500px at 50% 15%, rgba(212,175,55,.22), transparent 70%)}
+.hero-logo{width:min(420px,80vw);height:min(420px,80vw);object-fit:cover;border-radius:50%;border:3px solid rgba(212,175,55,.8);box-shadow:0 0 0 8px rgba(212,175,55,.07),0 0 90px rgba(212,175,55,.55);display:block;margin:0 auto 26px}
+.btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:800;text-decoration:none;transition:.15s;border:0;cursor:pointer;width:100%;text-align:center}
+.btn-gold{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#000}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:18px}
+.card{background:#121216;border:1px solid rgba(212,175,55,.18);border-radius:18px;padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+.badge{display:inline-block;font-size:10px;letter-spacing:.12em;padding:5px 10px;border-radius:999px;background:rgba(61,214,140,.12);border:1px solid rgba(61,214,140,.4);color:#7EE8B0}
+h2{font-family:Georgia,serif;font-size:32px;margin:60px 0 14px}
+.video{aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden;border:1px solid rgba(212,175,55,.15)}.video iframe{width:100%;height:100%;border:0}
+.footer{border-top:1px solid rgba(212,175,55,.15);margin-top:70px;padding:36px 20px;text-align:center;color:#777;font-size:13px}
+</style></head><body>
+<div style="position:sticky;top:0;background:rgba(7,7,9,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(212,175,55,.15);padding:12px 20px;display:flex;justify-content:space-between"><b>LAURENCE COLBORNE</b><div style="color:var(--gold)">OFFICIAL</div></div>
+<div class="hero"><img class="hero-logo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhIVFRUVFRUVFRUVFRUVFRUVFRUXFhUVFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGxAQGy0lICUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAPQA9wMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAAAQIDBAUGBwj/xABAEAABAwIDBAgEBQYEBwAAAAABAAIDBBEFEiExQVEGEyJhcYGRobEysRRCwdHwFSNCYnKSooKS4fAjQ1NygpOz0v/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oAD
