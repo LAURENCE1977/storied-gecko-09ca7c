@@ -18,76 +18,8 @@ h2{font-family:Georgia,serif;font-size:32px;margin:60px 0 14px}
 .footer{border-top:1px solid rgba(212,175,55,.15);margin-top:70px;padding:36px 20px;text-align:center;color:#777;font-size:13px}
 </style></head><body>
 <div style="position:sticky;top:0;background:rgba(7,7,9,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(212,175,55,.15);padding:12px 20px;display:flex;justify-content:space-between"><b>LAURENCE COLBORNE</b><div style="color:var(--gold)">OFFICIAL</div></div>
-<div class="hero"><img class="hero-logo" src="./logo.jpg"><h1 style="font-family:Georgia,serif;font-size:42px;max-width:720px;margin:0 auto;line-height:1.05">The World of Music According To Laurence Colborne</h1></div>
-
-<div class="wrap">
-  <h2>Ditto.fm — All Releases (Always Live)</h2>
-  <p style="color:#aaa;font-size:13px;margin-bottom:12px">This pulls live from Apple Music + auto-links to your Ditto.fm pages. When you release via Ditto, it appears here within 24h with no upload.</p>
-  <div id="dittoGrid" class="grid"></div>
-</div>
+<div class="hero"><img id="heroLogo" class="hero-logo" alt="Logo"><h1 style="font-family:Georgia,serif;font-size:42px;max-width:720px;margin:0 auto;line-height:1.05">The World of Music According To Laurence Colborne</h1></div>
 <script>
-const knownReleases = [
-  {title: "When I Finally Put The Bottle Down", slug: "when-i-finally-put-the-bottle-down", badge: "LIVE"},
-  {title: "If Loving You Is A Crime I'm Guilty As Sin", slug: "if-loving-you-is-a-crime-i-m-guilty-as-sin", badge: "LATEST"},
-  {title: "You're A She-Devil With A Silver Tongue", slug: "you-re-a-she-devil-with-a-silver-tongue", badge: "LIVE"},
-  {title: "Revenge Is Coming For You", slug: "revenge-is-coming-for-you", badge: "LIVE"}
-];
-function slugify(t){return t.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').replace(/-+/g,'-');}
-function renderDitto(list){
-  const grid = document.getElementById('dittoGrid');
-  grid.innerHTML = list.map(r => `
-    <div class="card">
-      <div><span class="badge">${r.badge}</span><h3 style="margin-top:8px">${r.title}</h3><div style="color:#777;font-size:11px;margin-top:4px">ditto.fm/${r.slug}</div></div>
-      <a class="btn btn-gold" style="margin-top:16px;display:block" href="https://ditto.fm/${r.slug}" target="_blank" rel="noopener">SMARTLINK - ALL PLATFORMS (Live)</a>
-      <a class="btn" style="margin-top:8px;display:block;background:#111;border:1px solid rgba(212,175,55,.2);color:#aaa;font-size:12px" href="https://open.spotify.com/search/${encodeURIComponent(r.title + ' Laurence Colborne')}" target="_blank">Open on Spotify</a>
-    </div>
-  `).join('');
-}
-async function loadAll(){
-  let all = [...knownReleases];
-  renderDitto(all);
-  try{
-    const res = await fetch('https://itunes.apple.com/search?term=The+World+Of+Music+According+To+Laurence+Colborne&media=music&entity=song,album&limit=50');
-    const data = await res.json();
-    const seen = new Set(all.map(a=>a.slug));
-    for(const r of data.results){
-      const title = r.trackName || r.collectionName;
-      if(!title) continue;
-      const s = slugify(title);
-      if(seen.has(s)) continue;
-      all.push({title: title, slug: s, badge: "AUTO"});
-      seen.add(s);
-    }
-    renderDitto(all);
-  }catch(e){}
-}
-loadAll();
-</script>
-
-<div class="wrap">
-  <h2>Reviews & Radio — Groover.co</h2>
-  <p style="color:#aaa;font-size:13px;margin-bottom:12px">I use Groover.co for pro feedback, press, radio & playlist reviews. All tracks including “You're A She-Devil” are on Groover via Da Hub Radio.</p>
-  <div class="grid">
-    <div class="card" style="border-color:rgba(255,100,200,.25)">
-      <div><span class="badge" style="background:rgba(255,100,200,.12);border-color:rgba(255,100,200,.4);color:#FF8AD0">GROOVER.CO</span><h3 style="margin-top:8px">Get Reviewed on Groover</h3></div>
-      <a class="btn" style="margin-top:16px;display:block;background:linear-gradient(180deg,#FF8AD0,#FF4FB7);color:#000;font-weight:800" href="https://groover.co/" target="_blank">Visit Groover.co</a>
-      <a class="btn" style="margin-top:8px;display:block;background:#111;border:1px solid rgba(255,100,200,.3);color:#FF8AD0" href="https://groover.co/en/track/" target="_blank">My Tracks on Groover</a>
-    </div>
-    <div class="card" style="border-color:rgba(212,175,55,.3)">
-      <div><span class="badge" style="background:rgba(212,175,55,.15);border-color:rgba(212,175,55,.4);color:#F2D87A">RADIO VIA GROOVER</span><h3 style="margin-top:8px">Da Hub Radio — You're A She-Devil</h3></div>
-      <a class="btn btn-gold" style="margin-top:16px;display:block" href="https://groover.co/" target="_blank">Listen via Groover x Da Hub Radio</a>
-    </div>
-  </div>
-</div>
-
-<div class="wrap">
-<h2>Spotify — Always Live</h2>
-<div class="card" style="padding:0;overflow:hidden"><iframe src="https://open.spotify.com/embed/artist/5Na2bQAj5SQ2wJsLWLSuhu" width="100%" height="380" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:18px"></iframe></div>
-<h2>Music Videos</h2>
-<div class="grid">
-<div class="card" style="padding:0;overflow:hidden"><div class="video"><iframe src="https://www.youtube.com/embed/videoseries?list=UU4LEir3ub_U9Z7zs50i19jA" allowfullscreen></iframe></div></div>
-<div class="card" style="padding:0;overflow:hidden"><div class="video"><iframe src="https://www.youtube.com/embed/videoseries?list=UU4LEir3ub_U9Z7zs50i19jA" allowfullscreen></iframe></div></div>
-</div>
-</div>
-<div class="footer">© 2026 Laurence Colborne — Official</div>
-</body></html>
+// Logo baked in - split into small chunks so GitHub mobile paste works (no ?)
+const _logoParts = [
+  "/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMWFhUXGRcYGBgYGBcYIB0dHRgYIR0dIB0dHCggHRolGx0YITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OFQ8QFysdFR0tKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIALcBFAMBIgACEQEDEQH/xAAbAAEBAAIDAQAAAAAAAAAAAAAABAYHAQMEAv/EADcQAAEDAgMFBgQEBgMAAAAAAAEAAgMEEQUSITFBBhMiUWEyYQYUM2GxwfAUI1JicpLh8RZDY4Lx/8QAGQEAAgMBAAAAAAAAAAAAAAAAAAMBAgQF/8QAJhEAAgICAgICAwADAQAAAAAAAAECAxESITEEQRMiMlFhgf/aAAwDAQACEQMRAD8A5nwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
