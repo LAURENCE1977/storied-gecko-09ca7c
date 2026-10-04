@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The World of Music According To Laurence Colborne</title>
 <style>
 :root{--gold:#D4AF37;--gold2:#F2D87A;--bg:#070709}
@@ -10,7 +7,7 @@
 body{background:var(--bg);color:#eee;font-family:system-ui,Segoe UI,Roboto,sans-serif}
 .hero{text-align:center;padding:60px 20px 30px;background:radial-gradient(700px 500px at 50% 15%, rgba(212,175,55,.22), transparent 70%)}
 .hero-logo{width:min(420px,80vw);height:min(420px,80vw);object-fit:cover;border-radius:50%;border:3px solid rgba(212,175,55,.8);box-shadow:0 0 0 8px rgba(212,175,55,.07),0 0 90px rgba(212,175,55,.55);display:block;margin:0 auto 26px}
-.btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:800;text-decoration:none;transition:.15s;width:100%;text-align:center}
+.btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:800;text-decoration:none;transition:.15s;border:0;cursor:pointer;width:100%;text-align:center}
 .btn-gold{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#000}
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:18px}
@@ -19,28 +16,79 @@ body{background:var(--bg);color:#eee;font-family:system-ui,Segoe UI,Roboto,sans-
 h2{font-family:Georgia,serif;font-size:32px;margin:60px 0 14px}
 .video{aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden;border:1px solid rgba(212,175,55,.15)}.video iframe{width:100%;height:100%;border:0}
 .footer{border-top:1px solid rgba(212,175,55,.15);margin-top:70px;padding:36px 20px;text-align:center;color:#777;font-size:13px}
-</style>
-</head>
-<body>
+</style></head><body>
 <div style="position:sticky;top:0;background:rgba(7,7,9,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(212,175,55,.15);padding:12px 20px;display:flex;justify-content:space-between"><b>LAURENCE COLBORNE</b><div style="color:var(--gold)">OFFICIAL</div></div>
-<div class="hero">
-  <img class="hero-logo" src="data:image/jpeg;base64,[STRIPPED]... [FULL BASE64 IS IN DOWNLOAD - 100k chars - COPY FROM DOWNLOAD FILE, NOT THIS CHAT] ">
-</div>
+<div class="hero"><img class="hero-logo" src="./logo.jpg"></div>
+
 <div class="wrap">
-  <h2>Releases — SmartLink Hub</h2>
+  <h2>Ditto.fm — All Releases (Always Live)</h2>
+  <p style="color:#aaa;font-size:13px;margin-bottom:12px">This pulls live from Apple Music + auto-links to your Ditto.fm pages. When you release via Ditto, it appears here within 24h with no upload. All buttons are real links — never blocked on iPhone.</p>
+  <div id="dittoGrid" class="grid"></div>
+</div>
+<script>
+const knownReleases = [
+  {title: "When I Finally Put The Bottle Down", slug: "when-i-finally-put-the-bottle-down", badge: "LIVE"},
+  {title: "If Loving You Is A Crime I'm Guilty As Sin", slug: "if-loving-you-is-a-crime-i-m-guilty-as-sin", badge: "LATEST"},
+  {title: "You're A She-Devil With A Silver Tongue", slug: "you-re-a-she-devil-with-a-silver-tongue", badge: "LIVE"},
+  {title: "Revenge Is Coming For You", slug: "revenge-is-coming-for-you", badge: "LIVE"}
+];
+function slugify(t){return t.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').replace(/-+/g,'-');}
+function renderDitto(list){
+  const grid = document.getElementById('dittoGrid');
+  grid.innerHTML = list.map(r => `
+    <div class="card">
+      <div><span class="badge">${r.badge}</span><h3 style="margin-top:8px">${r.title}</h3><div style="color:#777;font-size:11px;margin-top:4px">ditto.fm/${r.slug}</div></div>
+      <a class="btn btn-gold" style="margin-top:16px;display:block" href="https://ditto.fm/${r.slug}" target="_blank" rel="noopener">SMARTLINK - ALL PLATFORMS (Live)</a>
+      <a class="btn" style="margin-top:8px;display:block;background:#111;border:1px solid rgba(212,175,55,.2);color:#aaa;font-size:12px" href="https://open.spotify.com/search/${encodeURIComponent(r.title + ' Laurence Colborne')}" target="_blank" rel="noopener">Open on Spotify</a>
+    </div>
+  `).join('');
+}
+async function loadAll(){
+  let all = [...knownReleases];
+  renderDitto(all);
+  try{
+    const res = await fetch('https://itunes.apple.com/search?term=The+World+Of+Music+According+To+Laurence+Colborne&media=music&entity=song,album&limit=50');
+    const data = await res.json();
+    const seen = new Set(all.map(a=>a.slug));
+    for(const r of data.results){
+      const title = r.trackName || r.collectionName;
+      if(!title) continue;
+      const s = slugify(title);
+      if(seen.has(s)) continue;
+      all.push({title: title, slug: s, badge: "AUTO"});
+      seen.add(s);
+    }
+    renderDitto(all);
+  }catch(e){console.log('auto discover failed', e);}
+}
+loadAll();
+</script>
+
+<div class="wrap">
+  <h2>Reviews & Radio — Groover.co</h2>
+  <p style="color:#aaa;font-size:13px;margin-bottom:12px">I use Groover.co for pro feedback, press, radio & playlist reviews. All tracks including “You're A She-Devil With A Silver Tongue” are on Groover via Da Hub Radio.</p>
   <div class="grid">
-    <div class="card"><div><span class="badge">LIVE NOW</span><h3>When I Finally Put The Bottle Down</h3></div><a class="btn btn-gold" style="margin-top:16px;display:block" href="https://ditto.fm/when-i-finally-put-the-bottle-down" target="_blank" rel="noopener noreferrer">SMARTLINK - ALL PLATFORMS</a></div>
-    <div class="card"><div><span class="badge">LIVE NOW</span><h3>If Loving You Is A Crime I'm Guilty As Sin</h3></div><a class="btn btn-gold" style="margin-top:16px;display:block" href="https://ditto.fm/if-loving-you-is-a-crime-i-m-guilty-as-sin" target="_blank" rel="noopener noreferrer">SMARTLINK - ALL PLATFORMS</a></div>
-    <div class="card" style="border-color:rgba(212,175,55,.4)"><div><span class="badge" style="background:rgba(212,175,55,.15);border-color:rgba(212,175,55,.4);color:var(--gold2)">LIVE NOW</span><h3>You're A She-Devil With A Silver Tongue</h3></div><a class="btn btn-gold" style="margin-top:16px;display:block" href="https://ditto.fm/you-re-a-she-devil-with-a-silver-tongue" target="_blank" rel="noopener noreferrer">SMARTLINK - ALL PLATFORMS</a></div>
+    <div class="card" style="border-color:rgba(255,100,200,.25)">
+      <div><span class="badge" style="background:rgba(255,100,200,.12);border-color:rgba(255,100,200,.4);color:#FF8AD0">GROOVER.CO</span><h3 style="margin-top:8px">Get Reviewed on Groover</h3><p style="color:#888;font-size:12px;margin-top:6px">Send a track for feedback from curators, radio stations, labels and press. Real reviews, guaranteed response.</p></div>
+      <a class="btn" style="margin-top:16px;display:block;background:linear-gradient(180deg,#FF8AD0,#FF4FB7);color:#000;font-weight:800" href="https://groover.co/" target="_blank" rel="noopener">Visit Groover.co</a>
+      <a class="btn" style="margin-top:8px;display:block;background:#111;border:1px solid rgba(255,100,200,.3);color:#FF8AD0" href="https://groover.co/en/track/" target="_blank" rel="noopener">My Tracks on Groover</a>
+    </div>
+    <div class="card" style="border-color:rgba(212,175,55,.3)">
+      <div><span class="badge" style="background:rgba(212,175,55,.15);border-color:rgba(212,175,55,.4);color:var(--gold2)">RADIO VIA GROOVER</span><h3 style="margin-top:8px">Da Hub Radio — You're A She-Devil</h3><p style="color:#888;font-size:12px;margin-top:6px">Featured on Da Hub Radio through Groover — streaming 128kbps / audio/mpeg</p></div>
+      <a class="btn btn-gold" style="margin-top:16px;display:block" href="https://groover.co/" target="_blank" rel="noopener">Listen via Groover x Da Hub Radio</a>
+      <div style="color:#666;font-size:10px;margin-top:8px;text-align:center">Groover profile updates live — reviews appear here</div>
+    </div>
   </div>
-  <h2>Spotify</h2>
-  <div class="card" style="padding:0;overflow:hidden"><iframe src="https://open.spotify.com/embed/artist/5Na2bQAj5SQ2wJsLWLSuhu" width="100%" height="380" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:18px"></iframe></div>
-  <h2>Music Videos</h2>
-  <div class="grid">
-    <div class="card" style="padding:0;overflow:hidden"><div class="video"><iframe src="https://www.youtube.com/embed/videoseries?list=UU4LEir3ub_U9Z7zs50i19jA" allowfullscreen></iframe></div></div>
-    <div class="card" style="padding:0;overflow:hidden"><div class="video"><iframe src="https://www.youtube.com/embed/videoseries?list=UUjqaEJT5QShyBy7CU7vO7Qg" allowfullscreen></iframe></div></div>
-  </div>
+</div>
+
+<div class="wrap">
+<h2>Spotify — Always Live</h2>
+<div class="card" style="padding:0;overflow:hidden"><iframe src="https://open.spotify.com/embed/artist/5Na2bQAj5SQ2wJsLWLSuhu" width="100%" height="380" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:18px"></iframe></div>
+<h2>Music Videos</h2>
+<div class="grid">
+<div class="card" style="padding:0;overflow:hidden"><div class="video"><iframe src="https://www.youtube.com/embed/videoseries?list=UU4LEir3ub_U9Z7zs50i19jA" allowfullscreen></iframe></div></div>
+<div class="card" style="padding:0;overflow:hidden"><div class="video"><iframe src="https://www.youtube.com/embed/videoseries?list=UU4LEir3ub_U9Z7zs50i19jA" allowfullscreen></iframe></div></div>
+</div>
 </div>
 <div class="footer">© 2026 Laurence Colborne — Official</div>
-</body>
-</html>
+</body></html>
